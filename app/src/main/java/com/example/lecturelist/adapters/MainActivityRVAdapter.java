@@ -34,4 +34,10 @@ public class MainActivityRVAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     public int getItemCount() {
         return mDataSet.size();
     }
+
+    public int getPositionOf(RowType item) {
+        return mDataSet.indexOf(item);
+    }
+
+
 }

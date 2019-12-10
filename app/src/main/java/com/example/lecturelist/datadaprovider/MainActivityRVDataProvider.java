@@ -12,11 +12,15 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import static com.example.lecturelist.properties.Properties.*;
+
 public class MainActivityRVDataProvider {
 
     private List<RowType> mLectures;
+    private SimpleDateFormat format;
 
     public MainActivityRVDataProvider() {
+        format = new SimpleDateFormat(LECTURE_ADAPTER_DATE_FORMATE,Locale.getDefault());
         mLectures = new ArrayList<>();
         initLectures();
     }
@@ -70,6 +74,21 @@ public class MainActivityRVDataProvider {
         }
         return new ArrayList<>(lectors);
     }
+
+    public RowType getCloseLection(Date date){
+        for (int i = 0; i < mLectures.size(); i++) {
+            LectureItem item = (LectureItem) mLectures.get(i);
+            try {
+                Date tempdate = format.parse(item.getDate());
+                if (tempdate != null && tempdate.after(date)){
+                    return item;
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
 /*
     public List<LectureItem> filterBy(String lectorName) {
         List<LectureItem> result = new ArrayList<>();
@@ -80,21 +99,5 @@ public class MainActivityRVDataProvider {
         }
         return result;
     }
-
-    public LectureItem getLectureNextTo(Date date) {
-        SimpleDateFormat format = new SimpleDateFormat(, Locale.getDefault());
-        for (LectureItem lecture : mLectures) {
-            try {
-                Date lectureDate = format.parse(lecture.getDate());
-                if (lectureDate != null && lectureDate.after(date)) {
-                    return lecture;
-                }
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        }
-        return mLectures.get(mLectures.size() - 1);
-    }
-
  */
 }

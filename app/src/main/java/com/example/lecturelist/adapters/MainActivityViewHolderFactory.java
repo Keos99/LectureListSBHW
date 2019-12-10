@@ -19,7 +19,7 @@ public class MainActivityViewHolderFactory{
 
         private LectureHolder(@NonNull View itemView){
             super(itemView);
-            mNumber = itemView.findViewById(R.id.number);
+            mNumber = itemView.findViewById(R.id.lectures_number);
             mDate = itemView.findViewById(R.id.date);
             mTheme = itemView.findViewById(R.id.theme);
             mLector = itemView.findViewById(R.id.lector);

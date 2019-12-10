@@ -37,6 +37,6 @@ public class LectureItem implements RowType {
         lectureHolder.getDate().setText(mDate);
         lectureHolder.getTheme().setText(mTheme);
         lectureHolder.getLector().setText(mLector);
-        lectureHolder.getNumber().setText(mNumber);
+        lectureHolder.getNumber().setText(String.valueOf(mNumber));
     }
 }

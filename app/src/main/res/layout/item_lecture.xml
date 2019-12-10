@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/number"
+        android:id="@+id/lectures_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/default_margin"
@@ -18,8 +18,8 @@
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/number"
-        android:layout_toEndOf="@+id/number"
+        android:layout_alignTop="@+id/lectures_number"
+        android:layout_toEndOf="@+id/lectures_number"
         tools:text="03.10.2019" />
 
     <TextView
