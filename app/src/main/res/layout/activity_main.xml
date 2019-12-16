@@ -10,12 +10,14 @@
         android:id="@+id/main_activity_lectors_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:spinnerMode="dialog"
         android:layout_margin="@dimen/margin_medium" />
 
     <Spinner
         android:id="@+id/main_activity_display_mode_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:spinnerMode="dialog"
         android:layout_margin="@dimen/margin_medium" />
 
     <View

@@ -6,12 +6,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.lecturelist.model.RowType;
 import java.util.List;
 
-public class MainActivityRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class AdapterRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<RowType> mDataSet;
 
-    public MainActivityRVAdapter(List<RowType> mDataSet) {
+    public AdapterRecyclerView(List<RowType> mDataSet) {
         this.mDataSet = mDataSet;
+    }
+
+    public void setDataSet(List<RowType> DataSet) {
+        mDataSet = DataSet;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -22,7 +27,7 @@ public class MainActivityRVAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return MainActivityViewHolderFactory.create(parent, viewType);
+        return ViewHolderFactory.create(parent, viewType);
     }
 
     @Override
