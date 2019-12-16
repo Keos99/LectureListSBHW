@@ -1,11 +1,15 @@
 package com.example.lecturelist.datadaprovider;
 
+import android.content.Context;
+
+import com.example.lecturelist.R;
 import com.example.lecturelist.model.LectureItem;
 import com.example.lecturelist.model.RowType;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -14,13 +18,17 @@ import java.util.Set;
 
 import static com.example.lecturelist.properties.Properties.*;
 
-public class MainActivityRVDataProvider {
+public class DataProvider {
+
+    public final int POSITION_ALL = 0;
 
     private List<RowType> mLectures;
-    private SimpleDateFormat format;
+    private SimpleDateFormat mFormat;
+    private Context mContext;
 
-    public MainActivityRVDataProvider() {
-        format = new SimpleDateFormat(LECTURE_ADAPTER_DATE_FORMATE,Locale.getDefault());
+    public DataProvider(Context context) {
+        mContext = context;
+        mFormat = new SimpleDateFormat(LECTURE_ADAPTER_DATE_FORMATE,Locale.getDefault());
         mLectures = new ArrayList<>();
         initLectures();
     }
@@ -66,20 +74,25 @@ public class MainActivityRVDataProvider {
     }
 
     public List<String> providerLectors() {
-        Set<String> lectors = new HashSet<>();
+        Set<String> templectors = new HashSet<>();
 
         for (int i = 0; i < mLectures.size(); i++) {
             LectureItem item = (LectureItem) mLectures.get(i);
-            lectors.add(item.getLector());
+            templectors.add(item.getLector());
         }
-        return new ArrayList<>(lectors);
+
+        ArrayList<String> lectors = new ArrayList<>(templectors);
+
+        Collections.sort(lectors);
+        lectors.add(POSITION_ALL,mContext.getString(R.string.all));
+        return lectors;
     }
 
     public RowType getCloseLection(Date date){
         for (int i = 0; i < mLectures.size(); i++) {
             LectureItem item = (LectureItem) mLectures.get(i);
             try {
-                Date tempdate = format.parse(item.getDate());
+                Date tempdate = mFormat.parse(item.getDate());
                 if (tempdate != null && tempdate.after(date)){
                     return item;
                 }
@@ -89,15 +102,15 @@ public class MainActivityRVDataProvider {
         }
         return null;
     }
-/*
-    public List<LectureItem> filterBy(String lectorName) {
-        List<LectureItem> result = new ArrayList<>();
-        for (LectureItem lecture : mLectures) {
-            if (lecture.getLector().equals(lectorName)) {
-                result.add(lecture);
+
+    public List<RowType> filterBy(String name) {
+        List<RowType> result = new ArrayList<>();
+        for (int i = 0; i < mLectures.size(); i++) {
+            LectureItem item = (LectureItem) mLectures.get(i);
+            if (item.getLector().equals(name)) {
+                result.add(item);
             }
         }
         return result;
     }
- */
 }

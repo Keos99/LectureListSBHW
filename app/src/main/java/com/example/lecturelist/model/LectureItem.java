@@ -1,7 +1,7 @@
 package com.example.lecturelist.model;
 
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.lecturelist.adapters.MainActivityViewHolderFactory;
+import com.example.lecturelist.adapters.ViewHolderFactory;
 
 public class LectureItem implements RowType {
 
@@ -32,8 +32,8 @@ public class LectureItem implements RowType {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder) {
-        MainActivityViewHolderFactory.LectureHolder lectureHolder =
-                (MainActivityViewHolderFactory.LectureHolder) viewHolder;
+        ViewHolderFactory.LectureHolder lectureHolder =
+                (ViewHolderFactory.LectureHolder) viewHolder;
         lectureHolder.getDate().setText(mDate);
         lectureHolder.getTheme().setText(mTheme);
         lectureHolder.getLector().setText(mLector);

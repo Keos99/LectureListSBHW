@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.lecturelist.R;
 import com.example.lecturelist.model.RowType;
 
-public class MainActivityViewHolderFactory{
+public class ViewHolderFactory {
 
     public static class LectureHolder extends RecyclerView.ViewHolder{
         private final TextView mNumber;
