@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.lecturelist.R;
 import com.example.lecturelist.model.LectureItem;
 import com.example.lecturelist.model.RowType;
+import com.example.lecturelist.model.WeekItem;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,20 +21,18 @@ import static com.example.lecturelist.properties.Properties.*;
 
 public class DataProvider {
 
-    public final int POSITION_ALL = 0;
-
     private List<RowType> mLectures;
     private SimpleDateFormat mFormat;
     private Context mContext;
 
     public DataProvider(Context context) {
         mContext = context;
-        mFormat = new SimpleDateFormat(LECTURE_ADAPTER_DATE_FORMATE,Locale.getDefault());
+        mFormat = new SimpleDateFormat(LECTURE_ADAPTER_DATE_FORMATE, Locale.getDefault());
         mLectures = new ArrayList<>();
         initLectures();
     }
 
-    private void initLectures(){
+    private void initLectures() {
         mLectures.add(new LectureItem(1, "12.11.2019", "Вводное занятие", "Соколов"));
         mLectures.add(new LectureItem(2, "14.11.2019", "View, Layouts", "Соколов"));
         mLectures.add(new LectureItem(3, "16.11.2019", "Drawables", "Соколов"));
@@ -84,16 +83,16 @@ public class DataProvider {
         ArrayList<String> lectors = new ArrayList<>(templectors);
 
         Collections.sort(lectors);
-        lectors.add(POSITION_ALL,mContext.getString(R.string.all));
+        lectors.add(POSITION_ALL, mContext.getString(R.string.all));
         return lectors;
     }
 
-    public RowType getCloseLection(Date date){
+    public RowType getCloseLection(Date date) {
         for (int i = 0; i < mLectures.size(); i++) {
             LectureItem item = (LectureItem) mLectures.get(i);
             try {
                 Date tempdate = mFormat.parse(item.getDate());
-                if (tempdate != null && tempdate.after(date)){
+                if (tempdate != null && tempdate.after(date)) {
                     return item;
                 }
             } catch (ParseException e) {
@@ -110,6 +109,16 @@ public class DataProvider {
             if (item.getLector().equals(name)) {
                 result.add(item);
             }
+        }
+        return result;
+    }
+
+    public List<RowType> groupByWeek() {
+        List<RowType> result = new ArrayList<>(mLectures);
+        int count = mLectures.size() / LECTURE_PER_WEEK + mLectures.size();
+        int weaknumber = 1;
+        for (int i = 0; i < count; i += 4) {
+            result.add(i, new WeekItem(String.valueOf(weaknumber++)));
         }
         return result;
     }

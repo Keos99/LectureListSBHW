@@ -4,20 +4,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.lecturelist.R;
 import com.example.lecturelist.model.RowType;
 
 public class ViewHolderFactory {
 
-    public static class LectureHolder extends RecyclerView.ViewHolder{
+    public static class LectureHolder extends RecyclerView.ViewHolder {
         private final TextView mNumber;
         private final TextView mDate;
         private final TextView mTheme;
         private final TextView mLector;
 
-        private LectureHolder(@NonNull View itemView){
+        private LectureHolder(@NonNull View itemView) {
             super(itemView);
             mNumber = itemView.findViewById(R.id.lectures_number);
             mDate = itemView.findViewById(R.id.date);
@@ -42,15 +44,15 @@ public class ViewHolderFactory {
         }
     }
 
-    public static class WeekHolder extends RecyclerView.ViewHolder{
+    public static class WeekHolder extends RecyclerView.ViewHolder {
         private final TextView mTextViewWeek;
 
-        private WeekHolder(@NonNull View itemView){
+        private WeekHolder(@NonNull View itemView) {
             super(itemView);
-            mTextViewWeek = itemView.findViewById(R.id.week);
+            mTextViewWeek = itemView.findViewById(R.id.week_textview);
         }
 
-        public TextView getTextViewWeek(){
+        public TextView getTextViewWeek() {
             return mTextViewWeek;
         }
     }
@@ -65,7 +67,7 @@ public class ViewHolderFactory {
 
             case RowType.WEEK_ROW_TYPE:
                 View weekTypeView = LayoutInflater.from(parent.getContext()).inflate(
-                        R.layout.item_lecture, parent, false);
+                        R.layout.item_week, parent, false);
                 return new WeekHolder(weekTypeView);
 
             default:

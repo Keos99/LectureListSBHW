@@ -1,9 +1,12 @@
 package com.example.lecturelist.adapters;
 
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.lecturelist.model.RowType;
+
 import java.util.List;
 
 public class AdapterRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

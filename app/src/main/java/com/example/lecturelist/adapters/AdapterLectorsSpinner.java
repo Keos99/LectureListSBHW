@@ -27,8 +27,8 @@ public class AdapterLectorsSpinner extends ArrayAdapter {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        if (convertView == null){
-            convertView = View.inflate(mContext, mResource,null);
+        if (convertView == null) {
+            convertView = View.inflate(mContext, mResource, null);
         }
         TextView textView = (TextView) convertView;
         textView.setText(mData.get(position));

@@ -1,6 +1,7 @@
 package com.example.lecturelist.model;
 
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.lecturelist.adapters.ViewHolderFactory;
 
 public class LectureItem implements RowType {
