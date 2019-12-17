@@ -7,5 +7,6 @@ public interface RowType {
     int WEEK_ROW_TYPE = 1;
 
     int getItemViewType();
+
     void onBindViewHolder(RecyclerView.ViewHolder viewHolder);
 }
